@@ -37,3 +37,13 @@ SELECT * FROM animals;
 COMMIT;
 
 SELECT * FROM animals;
+
+BEGIN TRANSACTION;
+
+DELETE FROM animals;
+
+SELECT * FROM animals;
+
+ROLLBACK;
+
+SELECT * FROM animals;
