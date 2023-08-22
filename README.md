@@ -1,7 +1,11 @@
 
 <a name="readme-top"></a>
 
-<h2>VET CLINIC</h2>
+<div align="center">
+
+  <h1>VET CLINIC</h1>
+
+</div>
 
 # 📗 Table of Contents
 
