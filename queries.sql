@@ -79,6 +79,7 @@ SELECT species, MIN(weight_kg), MAX(weight_kg) FROM animals GROUP BY species;
 
 SELECT species, AVG(escape_attempts) FROM animals WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-12-31' GROUP BY species;
 
+
 -- Write queries (using JOIN) to answer the following questions:
 
 --     What animals belong to Melody Pond?
@@ -90,8 +91,9 @@ WHERE o.full_name = 'Melody Pond';
 
 
 --     List of all animals that are pokemon (their type is Pokemon).
---     List all owners and their animals, remember to include those that don't own any animal.
---     How many animals are there per species?
---     List all Digimon owned by Jennifer Orwell.
---     List all animals owned by Dean Winchester that haven't tried to escape.
---     Who owns the most animals?
+
+SELECT a.name
+FROM animals a
+JOIN species s ON a.species_id = s.id
+WHERE s.name = 'Pokemon';
+
