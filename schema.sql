@@ -25,4 +25,15 @@ CREATE TABLE owners (
   age INTEGER
 );
 
+-- Create a table named species with the following columns:
+
+--     id: integer (set it as autoincremented PRIMARY KEY)
+--     name: string
+
+
+CREATE TABLE species (
+  id SERIAL PRIMARY KEY,
+  name TEXT
+);
+
 
