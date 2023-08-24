@@ -19,26 +19,10 @@ ALTER TABLE animals ADD species text;
 --     age: integer
 
 
-CREATE TABLE owners(
-  id integer PRIMARY KEY AUTOINCREMENT,
-  full_name text,
-  age integer
+CREATE TABLE owners (
+  id SERIAL PRIMARY KEY,
+  full_name TEXT,
+  age INTEGER
 );
 
--- Create a table named species with the following columns:
 
---     id: integer (set it as autoincremented PRIMARY KEY)
---     name: string
-
-
-CREATE TABLE species(
-  id integer PRIMARY KEY AUTOINCREMENT,
-  name text
-);
-
--- Modify animals table:
-
---     Make sure that id is set as autoincremented PRIMARY KEY
---     Remove column species
---     Add column species_id which is a foreign key referencing species table
---     Add column owner_id which is a foreign key referencing the owners table
