@@ -25,6 +25,7 @@ CREATE TABLE owners (
   age INTEGER
 );
 
+
 -- Create a table named species with the following columns:
 
 --     id: integer (set it as autoincremented PRIMARY KEY)
@@ -37,3 +38,21 @@ CREATE TABLE species (
 );
 
 
+-- Modify animals table:
+
+--     Make sure that id is set as autoincremented PRIMARY KEY
+--     Remove column species
+--     Add column species_id which is a foreign key referencing species table
+--     Add column owner_id which is a foreign key referencing the owners table
+
+
+ALTER TABLE animals ADD COLUMN new_id serial;
+
+UPDATE animals SET new_id = id;
+
+ALTER TABLE animals DROP CONSTRAINT animals_pkey;
+ALTER TABLE animals DROP COLUMN id;
+
+ALTER TABLE animals RENAME COLUMN new_id TO id;
+
+ALTER TABLE animals ADD PRIMARY KEY (id);
