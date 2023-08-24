@@ -56,3 +56,6 @@ ALTER TABLE animals DROP COLUMN id;
 ALTER TABLE animals RENAME COLUMN new_id TO id;
 
 ALTER TABLE animals ADD PRIMARY KEY (id);
+
+ALTER TABLE animals DROP COLUMN species;
+
