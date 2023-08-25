@@ -91,8 +91,8 @@ CREATE TABLE specializations (
 -- There is a many-to-many relationship between the tables animals and vets: an animal can visit multiple vets and one vet can be visited by multiple animals. Create a "join table" called visits to handle this relationship, it should also keep track of the date of the visit.
 
 CREATE TABLE visits (
+  id SERIAL PRIMARY KEY,
   vet_id INTEGER REFERENCES vets(id),
   animal_id INTEGER REFERENCES animals(id),
-  visit_date DATE,
-  PRIMARY KEY (vet_id, animal_id)
+  visit_date DATE
 );
