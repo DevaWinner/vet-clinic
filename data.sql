@@ -104,4 +104,7 @@ VALUES
 
     INSERT INTO specializations (vet_id, species_id)
     VALUES ((SELECT id FROM vets WHERE name = 'Stephanie Mendez'), 1);
- 
+    
+    --  Vet Jack Harkness is specialized in Digimon.
+    INSERT INTO specializations (vet_id, species_id)
+    VALUES ((SELECT id FROM vets WHERE name = 'Jack Harkness'), 2);
