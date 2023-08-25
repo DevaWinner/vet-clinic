@@ -75,3 +75,20 @@ SET owner_id = CASE
     WHEN name IN ('Charmander', 'Squirtle', 'Blossom') THEN (SELECT id FROM owners WHERE full_name = 'Melody Pond')
     WHEN name IN ('Angemon', 'Boarmon') THEN (SELECT id FROM owners WHERE full_name = 'Dean Winchester')
 END;
+
+
+-- Insert the following data for vets:
+
+    --  Vet William Tatcher is 45 years old and graduated Apr 23rd, 2000.
+    --  Vet Maisy Smith is 26 years old and graduated Jan 17th, 2019.
+    --  Vet Stephanie Mendez is 64 years old and graduated May 4th, 1981.
+    --  Vet Jack Harkness is 38 years old and graduated Jun 8th, 2008.
+
+INSERT INTO vets (name, age, date_of_graduation)
+VALUES
+    ('William Tatcher', 45, '2000-04-23'),
+    ('Maisy Smith', 26, '2019-01-17'),
+    ('Stephanie Mendez', 64, '1981-05-04'),
+    ('Jack Harkness', 38, '2008-06-08');
+
+
