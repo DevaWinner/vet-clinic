@@ -160,11 +160,10 @@ LIMIT 1;
     WHERE vt.name = 'Stephanie Mendez';
 
     --  List all vets and their specialties, including vets with no specialties.
-    SELECT vt.name, COALESCE(array_agg(s.name), ARRAY[]::text[]) AS specialties
-    FROM vets vt
-    LEFT JOIN vet_specialties vs ON vt.id = vs.vet_id
-    LEFT JOIN specialties s ON vs.specialty_id = s.id
-    GROUP BY vt.id, vt.name;
+    SELECT vets.name AS vet_name, species.name AS specialized_in
+    FROM specializations
+    FULL JOIN vets ON specializations.vet_id = vets.id
+    FULL JOIN species ON specializations.species_id = species.id;
 
      --  List all animals that visited Stephanie Mendez between April 1st and August 30th, 2020.
     SELECT a.name AS animal_name
@@ -183,12 +182,14 @@ LIMIT 1;
     LIMIT 1;
 
     --  Who was Maisy Smith's first visit?
-    SELECT a.name AS animal_name, MIN(v.visit_date) AS first_visit_date
-    FROM visits v
-    JOIN animals a ON v.animal_id = a.id
-    JOIN vets vt ON v.vet_id = vt.id
-    WHERE vt.name = 'Maisy Smith'
-    GROUP BY a.name;
+    SELECT MIN(visit_date) AS first_visited, animals.name AS animal 
+    FROM visits 
+    JOIN vets ON visits.vet_id = vets.id 
+    JOIN animals ON visits.animals_id = animals.id 
+    WHERE vets.name = 'Maisy Smith' 
+    GROUP BY animals.name 
+    ORDER BY first_visited ASC 
+    LIMIT 1;
 
 
     --  Details for most recent visit: animal information, vet information, and date of visit.
@@ -211,13 +212,12 @@ LIMIT 1;
 
 
     --  What specialty should Maisy Smith consider getting? Look for the species she gets the most.
-    SELECT s.name AS specialty_name, COUNT(*) AS visit_count
-    FROM visits v
-    JOIN animals a ON v.animal_id = a.id
-    JOIN vets ve ON v.vet_id = ve.id
-    JOIN specializations sp ON ve.id = sp.vet_id
-    JOIN species s ON sp.species_id = s.id
-    WHERE a.name = 'Maisy Smith'
-    GROUP BY s.name
-    ORDER BY visit_count DESC
-    LIMIT 1;
+SELECT species.name AS frequent_visit_to_specific_specialist, vets.name AS doctor_name 
+FROM animals
+JOIN visits ON animals.id = visits.animals_id 
+JOIN vets ON visits.vet_id = vets.id 
+JOIN species ON animals.species_id = species.id 
+WHERE vets.name = 'Maisy Smith' 
+GROUP BY species.name, vets.name 
+ORDER BY COUNT(species.name) DESC 
+LIMIT 1;
