@@ -92,3 +92,9 @@ VALUES
     ('Jack Harkness', 38, '2008-06-08');
 
 
+-- Insert the following data for specializations:
+
+    --  Vet William Tatcher is specialized in Pokemon.
+    INSERT INTO specializations (vet_id, species_id)
+    VALUES ((SELECT id FROM vets WHERE name = 'William Tatcher'), 1);
+
